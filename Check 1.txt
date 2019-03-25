@@ -1,0 +1,27 @@
+Check 1
+#include"SevSeg.h"
+SevSeg sevseg;
+int Hour=0;
+int Min=0;
+void setup() {
+  // put your setup code here, to run once:
+  byte numDigits = 4;
+  byte digitPins[] = {2, 3, 4, 5};
+  byte segmentPins[] = {8, 9, 10, 11, 12, 13, 14, 15};
+  sevseg.begin(COMMON_CATHODE, numDigits, digitPins, segmentPins);
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+  sevseg.setNumber(Hour * 100 + Min, 4);
+  Min = Min + 1;
+  if (Min == 60) {
+    Min = 0;  
+  if (Hour == 23)
+    Hour = 0;
+  else
+    Hour++;
+  }
+  for(int i=0;i<=878787;i++)
+  sevseg.refreshDisplay();
+  
+}
